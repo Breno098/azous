@@ -1,0 +1,9 @@
+{
+    "name": "Azous/app",
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "Azous\\" : "src/"
+        }
+    }
+}

@@ -4,41 +4,136 @@ namespace Azous\Model;
 
 class Model
 {
-    public function requestStore($req)
+    public function __construct(int $id = 0)
     {
-       $this->requestAttrs($req);
-       $this->store();
+        $this->setId($id);
+        $this->run();   
     }
 
-    public function requestAttrs($req)
+    public function run()
     {
-        foreach ($this->attributes as $value) {
-            if( isset($req->params[$value]) ){
-                $this->$value = $req->params[$value];
+        if(!$result = $this->searchId($this->id)){
+            return false;
+        }
+        $this->constructAttrs($result);
+        return true;
+    }
+
+    protected function table()
+    {
+        return strtolower( 
+            str_replace(__NAMESPACE__.'\\', '', get_class($this) ) 
+        );
+    }
+
+    protected function constructAttrs(array $result)
+    {
+        foreach ($result[0] as $key => $value) {
+            if(is_int($this->$key)){
+                continue;
             }
+            if($class = trim( preg_replace("/(\(class)\)/i", '', $this->$key)) ){
+                $class = __NAMESPACE__.DIRECTORY_SEPARATOR.$class; 
+                $this->$key = new $class($value ?? 0);
+
+            } else if(is_object($this->$key)) {
+                $this->$key->setId($value)->run();
+                
+            } else {
+                $this->$key = $value;
+            }
+        }
+    }
+
+    public function searchId(int $id)
+    {
+        return (new \Azous\Database\Database)
+            ->table( $this->table() )
+            ->columns( $this->attrToArray() )
+            ->where('id', '=', $id)
+            ->get();
+    }
+
+    private function attrToArray()
+    {
+        $attrs = [];
+        foreach (get_object_vars($this) as $key => $value) {
+            $attrs[] = $key;
+        }
+        return $attrs;
+    }
+
+    public function __call($nameFunc, $arguments)
+    {
+        if(preg_match("/set/i", $nameFunc)){
+            $attribute = strtolower( str_replace('set', '', $nameFunc) );
+            return $this->_setAttributes($attribute, $arguments[0]);
+        }
+    }
+
+    private function _setAttributes(string $attribute, $value)
+    {
+        if(array_key_exists($attribute, get_object_vars($this))){
+            $this->$attribute = $value;
         }
         return $this;
     }
 
-    public function store()
+    public function save()
     {
-       foreach ($this->attributes as $key => $value) {
-          $storeArray[$value] = $this->$value ?? null; 
-       }
-       (new \Azous\Database\Database)->table($this->table)->insert($storeArray);
-    }
- 
-    public function __call($nameFunc, $arguments)
-    {
-       $attr = strtolower(str_replace('set', '', $nameFunc));
-       if(!in_array($attr, $this->attributes))
-          return false;
-       $this->$attr = $arguments[0];
-       return $this;
+        $storeArray = [];
+        foreach (get_object_vars($this) as $nameParam => $valueParam) {
+            if(is_object($this->$nameParam)){
+                $storeArray[$nameParam] = $this->$nameParam->id;
+            } else if(!preg_match("/(\(class)\)/i", $this->$nameParam)){
+                $storeArray[$nameParam] = $this->$nameParam;
+            } 
+        }
+
+        if( isset($this->id) && $this->searchId($this->id) ){
+            (new \Azous\Database\Database)->table($this->table())->where('id', '=', $this->id)->update($storeArray);
+        } else {
+            (new \Azous\Database\Database)->table($this->table())->insert($storeArray);
+        }
     }
 
-    public function table()
+    public function saveRequestData(\Azous\Http\Request $request)
     {
-        return $this->table;
+        foreach (get_object_vars($this) as $nameParam => $valueParam) {
+            foreach ($request as $indexRequest => $valueRequest) {
+                if($nameParam === $indexRequest){
+                    $this->$nameParam = $valueRequest;
+                }
+            }
+        }
+        $this->save();
+    }
+
+    public function delete()
+    {
+        if( isset($this->id) && $this->searchId($this->id) ){
+            (new \Azous\Database\Database)->table($this->table())->where('id', '=', $this->id)->delete();
+        } 
+    } 
+
+    public function findAll()
+    {
+        $results = (new \Azous\Database\Database)->table( $this->table() )->get();
+        $class = get_class($this);
+        $listModels = $this->table();
+        foreach ($results as $index => $item) {
+            $this->$listModels[] = new $class( $item['id'] );
+        }
+        return $this->$listModels;
+    }
+
+    public function storeAll()
+    {
+        $listModels = $this->table();
+        if($listModels){
+            foreach ($this->$listModels as $index => $item) {
+                $item->store();
+            }
+        }
     }
 }

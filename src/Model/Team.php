@@ -4,8 +4,7 @@ namespace Azous\Model;
 
 class Team extends Model
 {
-   protected $table = 'team';
-   protected $attributes = [
-      'id', 'name',
-   ];
+   public $id;
+   public $name;
+   public $country_id = '(class) Country';
 }

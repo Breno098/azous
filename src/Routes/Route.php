@@ -36,7 +36,7 @@ class Route
             if($matches){
                 $this->parsedPath[] = array(
                     'nameParam' => $matches[1],
-                    'value' => '*'
+                    'value' => '(param)'
                 );
             } else {
                 $this->parsedPath[] = array(
@@ -91,7 +91,7 @@ class Route
         }
         $pos = 0;
         foreach ($this->parsedPath as $parsed) {
-            if($parsed['value'] === '*'){
+            if($parsed['value'] === '(param)'){
                 $this->addParam($parsed['nameParam'], $url[$pos]);
             } else if($parsed['value'] !== $url[$pos]){
                 return false;

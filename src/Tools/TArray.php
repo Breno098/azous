@@ -28,4 +28,13 @@ class TArray
         }
         return $return;
     }
+
+    static function invertKeyValue(array $array)
+    {
+        $arrayReturn = [];
+        foreach ($array as $key => $value) {
+            $arrayReturn[$value] = $key;
+        }
+        return $arrayReturn;
+    }
 }

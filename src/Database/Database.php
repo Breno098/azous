@@ -18,24 +18,18 @@ class Database
     protected $whereCount = 0;
     protected $limits = [];
 
-    public function __construct()
+    private function connect()
     {
-        try {
+        if (!$this->db){
             $this->db = new PDO(
                 env('DB_DRIVER') .':host=' . env('DB_HOST') . ';dbname=' . env('DB_NAME'), 
                 env('DB_USER'), 
                 env('DB_PASS')
             );
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $exception) {
-            echo $exception->getMessage();
         }
-    }
-
-    public function connect()
-    {
-        if (!$this->db) new Database();
         return $this->db;
+
     }
 
     public function query(string $query, array $prepareValues = [])
@@ -97,7 +91,7 @@ class Database
 
     public function where(string $column, string $operator, $value, $type = 'and')
     {
-        $this->where[] = $this->erify_type($type) . " {$column} {$operator} ? ";
+        $this->where[] = $this->verify_type($type) . " {$column} {$operator} ? ";
         $this->prepareValuesWhere[] = $value; 
         return $this;
     }
@@ -110,7 +104,7 @@ class Database
 
     public function between(string $column, $value1, $value2, string $type = 'and')
     {
-        $this->where[] = $this->erify_type($type) . " {$column} between ? and ? ";
+        $this->where[] = $this->verify_type($type) . " {$column} between ? and ? ";
         $this->prepareValuesWhere[] = $value1; 
         $this->prepareValuesWhere[] = $value2; 
         return $this;
@@ -123,13 +117,13 @@ class Database
 
     public function isNull(string $column, string $type = 'and')
     {
-        $this->where[] = $this->erify_type($type) . " {$column} is null ";
+        $this->where[] = $this->verify_type($type) . " {$column} is null ";
         return $this;
     }
 
     public function isNotNull(string $column, string $type = 'and')
     {
-        $this->where[] = $this->erify_type($type) . " {$column} is not null ";
+        $this->where[] = $this->verify_type($type) . " {$column} is not null ";
         return $this;
     }
 
@@ -215,7 +209,7 @@ class Database
         $sets = implode(',', $sets);
         $this->query = " update {$this->table} set {$sets} ";
         $this->process_where();
-        return $this;
+        return $this->execute();
     }
 
     public function delete()

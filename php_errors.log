@@ -1,0 +1,94 @@
+[25-Nov-2020 17:13:15 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Azous\Model\Model::saveRequestData(), 0 passed in C:\Users\breno.souza\Desktop\Azous\src\Controller\TeamController.php on line 11 and exactly 1 expected in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php:100
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Controller\TeamController.php(11): Azous\Model\Model->saveRequestData()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\TeamController->register()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#3 C:\Users\breno.souza\Desktop\Azous\src\Routes\Routes.php(61): Azous\Routes\Route->run()
+#4 C:\Users\breno.souza\Desktop\Azous\index.php(19): Azous\Routes\Routes::run()
+#5 {main}
+  thrown in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 100
+[25-Nov-2020 18:07:20 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class '\Azous\Controller\GamblerUserController' not found in C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php:129
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Routes\Routes.php(61): Azous\Routes\Route->run()
+#2 C:\Users\breno.souza\Desktop\Azous\index.php(23): Azous\Routes\Routes::run()
+#3 {main}
+  thrown in C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php on line 129
+[25-Nov-2020 18:07:39 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'app_.gambleruser' doesn't exist in C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php:167
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php(167): PDOStatement->execute()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php(156): Azous\Database\Database->run()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php(54): Azous\Database\Database->get()
+#3 C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php(15): Azous\Model\Model->searchId()
+#4 C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php(10): Azous\Model\Model->run()
+#5 C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php(13): Azous\Model\Model->__construct()
+#6 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\Controller->__construct()
+#7 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#8 C:\Users\breno.souza\Desktop\Azous\src\Routes\R in C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php on line 167
+[25-Nov-2020 18:08:14 America/Sao_Paulo] PHP Fatal error:  Access level to Azous\Model\GamblerUser::table() must be protected (as in class Azous\Model\Model) or weaker in C:\Users\breno.souza\Desktop\Azous\src\Model\GamblerUser.php on line 13
+[25-Nov-2020 18:16:23 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function run() on null in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php:29
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\Controller->getById()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Routes\Routes.php(61): Azous\Routes\Route->run()
+#3 C:\Users\breno.souza\Desktop\Azous\index.php(26): Azous\Routes\Routes::run()
+#4 {main}
+  thrown in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php on line 29
+[25-Nov-2020 18:17:05 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function run() on null in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php:29
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\Controller->getById()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Routes\Routes.php(61): Azous\Routes\Route->run()
+#3 C:\Users\breno.souza\Desktop\Azous\index.php(26): Azous\Routes\Routes::run()
+#4 {main}
+  thrown in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php on line 29
+[25-Nov-2020 18:17:24 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function run() on null in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php:29
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\Controller->getById()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Routes\Routes.php(61): Azous\Routes\Route->run()
+#3 C:\Users\breno.souza\Desktop\Azous\index.php(26): Azous\Routes\Routes::run()
+#4 {main}
+  thrown in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php on line 29
+[25-Nov-2020 18:19:39 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function run() on null in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php:30
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\Controller->getById()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Routes\Routes.php(61): Azous\Routes\Route->run()
+#3 C:\Users\breno.souza\Desktop\Azous\index.php(26): Azous\Routes\Routes::run()
+#4 {main}
+  thrown in C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php on line 30
+[25-Nov-2020 18:28:56 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:28:56 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:28:56 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:28:56 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:29:03 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:29:03 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:29:03 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:29:03 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:29:07 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:29:07 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 33
+[25-Nov-2020 18:30:45 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key from player  where  id = '55'' at line 1 in C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php:167
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php(167): PDOStatement->execute()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php(156): Azous\Database\Database->run()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php(58): Azous\Database\Database->get()
+#3 C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php(15): Azous\Model\Model->searchId()
+#4 C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php(29): Azous\Model\Model->run()
+#5 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\Controller->getById()
+#6 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#7 C: in C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php on line 167
+[25-Nov-2020 18:32:01 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key from player  where  id = '5'' at line 1 in C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php:167
+Stack trace:
+#0 C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php(167): PDOStatement->execute()
+#1 C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php(156): Azous\Database\Database->run()
+#2 C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php(58): Azous\Database\Database->get()
+#3 C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php(15): Azous\Model\Model->searchId()
+#4 C:\Users\breno.souza\Desktop\Azous\src\Controller\Controller.php(29): Azous\Model\Model->run()
+#5 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(129): Azous\Controller\Controller->getById()
+#6 C:\Users\breno.souza\Desktop\Azous\src\Routes\Route.php(139): Azous\Routes\Route->mounted()
+#7 C:\ in C:\Users\breno.souza\Desktop\Azous\src\Database\Database.php on line 167
+[25-Nov-2020 18:36:26 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 35
+[25-Nov-2020 18:36:26 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 35
+[25-Nov-2020 18:36:26 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 35
+[25-Nov-2020 18:36:26 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\breno.souza\Desktop\Azous\src\Model\Model.php on line 35

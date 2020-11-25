@@ -1,28 +1,15 @@
 <?php
 
-namespace Azous\Schema;
+namespace Azous\Model;
 
-class Goal extends SchemaBase
+class Goal extends Model
 {
-   protected $table = 'goal';
+   public $id;
+   public $type;
+   public $country_id = '(class) Country';
+   public $team_id = '(class) Team';
+   public $game_id = '(class) Game';
+   public $player_id = '(class) Player';
+   public $gambler_id = '(class) Gambler';
 
-   public function create()
-   {
-      $schema = new \Azous\Database\Schema();
-      $schema->table($this->table);
-      $schema->id();
-      $schema->enum('type', ['aposta', 'oficial']);
-      $schema->int('team_id')->foreignKey('team')->onDeleteSetNull();
-      $schema->int('game_id')->foreignKey('game')->onDeleteSetNull();
-      $schema->int('player_id')->foreignKey('player')->onDeleteSetNull();
-      $schema->int('gambler_id')->foreignKey('gambler')->onDeleteSetNull();
-      $schema->create();
-   }
-
-   public function factory()
-   {
-      (new \Azous\Database\Database)->table($this->table)->insert([
-
-      ]);
-   }
 }

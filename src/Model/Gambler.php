@@ -1,30 +1,9 @@
 <?php
 
-namespace Azous\Schema;
+namespace Azous\Model;
 
-class Gambler extends SchemaBase
+class Gambler extends Model
 {
-   protected $table = 'gambler';
-
-   public function create()
-   {
-      $schema = new \Azous\Database\Schema();
-      $schema->table($this->table);
-      $schema->id();
-      $schema->string('name', 50);
-      $schema->string('user', 20);
-      $schema->string('token');
-      $schema->timestamp('access_time')->defaultCurrent();
-      $schema->create();
-   }
-
-   public function factory()
-   {
-      (new \Azous\Database\Database)->table($this->table)->insert([
-         'id' => 1,
-         'name' => 'Gambler master', 
-         'user' => 'master', 
-         'token' => hash_token('master')
-      ]);
-   }
+   public $id;
+   public $name;
 }

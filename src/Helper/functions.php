@@ -37,7 +37,7 @@ if (! function_exists('set_header')) {
 
 if (! function_exists('response')) {
     function response(){
-        return new Azous\Http\Response();
+        return new Azuos\Http\Response();
     }
 }
 

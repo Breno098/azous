@@ -1,8 +1,8 @@
 <?php
 
-namespace Azous\Controller;
+namespace Azuos\Controller;
 
 class CountryController extends Controller
 {
-    protected $model = \Azous\Model\Country::class;
+    protected $model = \Azuos\Model\Country::class;
 }

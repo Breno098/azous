@@ -1,6 +1,6 @@
 <?php
 
-namespace Azous\Model;
+namespace Azuos\Model;
 
 class Team extends Model
 {

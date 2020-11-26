@@ -1,6 +1,6 @@
 <?php
 
-namespace Azous\Database;
+namespace Azuos\Database;
 
 class SchemaBase
 {
@@ -16,7 +16,7 @@ class SchemaBase
     }
 
     public function schema() {
-        return new \Azous\Database\Schema();
+        return new \Azuos\Database\Schema();
     }
 
 
@@ -32,7 +32,7 @@ class SchemaBase
     public function drop()
     {
         if(isset($this->table)){
-            $schema = (new \Azous\Database\Schema)->table($this->table)->drop();
+            $schema = (new \Azuos\Database\Schema)->table($this->table)->drop();
         }
     }
 }

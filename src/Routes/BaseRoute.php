@@ -1,9 +1,9 @@
 <?php
 
-namespace Azous\Routes;
+namespace Azuos\Routes;
 
-use Azous\Tools\TArray;
-use Azous\Http\Request;
+use Azuos\Tools\TArray;
+use Azuos\Http\Request;
 
 class BaseRoute 
 {
@@ -13,6 +13,7 @@ class BaseRoute
     private $params = [];
     private $auth;
     public $route;
+    private $fixed = '/index.php';
     
     /**
      * @param string $method Metodo da requisição
@@ -43,7 +44,7 @@ class BaseRoute
     private function setPath(string $path)
     {
         $this->parsedPath = [];
-        $str_explode = explode('/', $path);
+        $str_explode = explode('/', $this->fixed.$path);
         foreach ($str_explode as $key => $value) {
             preg_match('/{(.*?)}/', $value, $matches);
             if($matches){
@@ -136,7 +137,7 @@ class BaseRoute
      */
     private function mounted($request)
     {
-        $use = "\\Azous\\Controller\\";
+        $use = "\\Azuos\\Controller\\";
         $class = $use . $this->callBack['class'];
         $function = $this->callBack['function'];
         return (new $class)->$function($request);

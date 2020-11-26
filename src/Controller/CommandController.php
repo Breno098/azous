@@ -1,11 +1,11 @@
 <?php
 
-namespace Azous\Controller;
+namespace Azuos\Controller;
 
-use Azous\Http\Request;
-use Azous\Database\Schema;
-use Azous\Database\Database;
-use Azous\Tools\TArray;
+use Azuos\Http\Request;
+use Azuos\Database\Schema;
+use Azuos\Database\Database;
+use Azuos\Tools\TArray;
 
 class CommandController extends Controller
 {
@@ -16,13 +16,13 @@ class CommandController extends Controller
     ];
 
     private $schemas = [
-        // 'user' => \Azous\Schema\User::class,
-        \Azous\Schema\Country::class,
-        \Azous\Schema\Team::class,
-        \Azous\Schema\Gambler::class,
-        \Azous\Schema\Game::class,
-        \Azous\Schema\Player::class,
-        \Azous\Schema\Goal::class,
+        // 'user' => \Azuos\Schema\User::class,
+        \Azuos\Schema\Country::class,
+        \Azuos\Schema\Team::class,
+        \Azuos\Schema\Gambler::class,
+        \Azuos\Schema\Game::class,
+        \Azuos\Schema\Player::class,
+        \Azuos\Schema\Goal::class,
     ];
     
     public function index(Request $req)

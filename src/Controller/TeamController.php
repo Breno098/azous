@@ -1,8 +1,8 @@
 <?php
 
-namespace Azous\Controller;
+namespace Azuos\Controller;
 
 class TeamController extends Controller
 {
-    protected $model = \Azous\Model\Team::class;
+    protected $model = \Azuos\Model\Team::class;
 }

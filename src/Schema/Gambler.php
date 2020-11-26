@@ -1,14 +1,14 @@
 <?php
 
-namespace Azous\Schema;
+namespace Azuos\Schema;
 
-class Gambler extends \Azous\Database\SchemaBase
+class Gambler extends \Azuos\Database\SchemaBase
 {
    protected $table = 'gambler';
 
    public function create()
    {
-      $schema = new \Azous\Database\Schema();
+      $schema = new \Azuos\Database\Schema();
       $schema->table($this->table);
       $schema->id();
       $schema->string('name', 50);
@@ -20,7 +20,7 @@ class Gambler extends \Azous\Database\SchemaBase
 
    public function factory()
    {
-      (new \Azous\Database\Database)->table($this->table)->insert([
+      (new \Azuos\Database\Database)->table($this->table)->insert([
          'id' => 1,
          'name' => 'Gambler master', 
          'user' => 'master', 

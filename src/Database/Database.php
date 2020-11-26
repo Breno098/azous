@@ -1,6 +1,6 @@
 <?php
 
-namespace Azous\Database;
+namespace Azuos\Database;
 
 use PDO;
 
@@ -144,7 +144,7 @@ class Database
         return $this;
     }
 
-    public function paginated($offset, $limit = 10)
+    public function paginated(int $offset, int $limit = 10)
     {
         $this->limit($limit);
         return $this->offset($offset);

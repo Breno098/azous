@@ -1,6 +1,6 @@
 <?php
 
-namespace Azous\Tools;
+namespace Azuos\Tools;
 
 class TArray
 {

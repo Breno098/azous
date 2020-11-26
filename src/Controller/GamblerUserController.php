@@ -1,8 +1,8 @@
 <?php
 
-namespace Azous\Controller;
+namespace Azuos\Controller;
 
 class GamblerUserController extends Controller
 {
-    protected $model = \Azous\Model\GamblerUser::class;
+    protected $model = \Azuos\Model\GamblerUser::class;
 }

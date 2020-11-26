@@ -1,24 +1,24 @@
 <?php
 
-namespace Azous\Schema;
+namespace Azuos\Schema;
 
-class Team extends \Azous\Database\SchemaBase
+class Team extends \Azuos\Database\SchemaBase
 {
    protected $table = 'team';
 
    public function create()
    {
-      $schema = new \Azous\Database\Schema();
+      $schema = new \Azuos\Database\Schema();
       $schema->table($this->table);
       $schema->id();
       $schema->string('name', 50);
-      $schema->int('id_country')->foreignKey('country', 'id')->onDeleteSetNull();
+      $schema->int('country_id')->foreignKey('country', 'id')->onDeleteSetNull();
       $schema->create();
    }
 
    public function factory()
    {
-      (new \Azous\Database\Database)->table($this->table)->insert([
+      (new \Azuos\Database\Database)->table($this->table)->insert([
          'id' => 1,
          'name' => 'Real Madrid', 
          'id_country' => 32

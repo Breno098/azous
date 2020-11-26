@@ -1,14 +1,14 @@
 <?php
 
-namespace Azous\Schema;
+namespace Azuos\Schema;
 
-class Country extends \Azous\Database\SchemaBase
+class Country extends \Azuos\Database\SchemaBase
 {
    protected $table = 'country';
 
    public function create()
    {
-      $schema = new \Azous\Database\Schema();
+      $schema = new \Azuos\Database\Schema();
       $schema->table($this->table);
       $schema->id();
       $schema->string('name', 50);
@@ -17,7 +17,7 @@ class Country extends \Azous\Database\SchemaBase
 
    public function factory()
    {
-      (new \Azous\Database\Database)->table($this->table)->insert(
+      (new \Azuos\Database\Database)->table($this->table)->insert(
          ['id' => 1,'name' => 'Alemanha'],
          ['id' => 2,'name' => 'Argentina'],
          ['id' => 3,'name' => 'Bolívia'],

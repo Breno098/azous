@@ -1,6 +1,6 @@
 <?php
 
-namespace Azous\Http;
+namespace Azuos\Http;
 
 class Request
 {

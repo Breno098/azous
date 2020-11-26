@@ -1,8 +1,8 @@
 <?php
 
-namespace Azous\Controller;
+namespace Azuos\Controller;
 
 class GameController extends Controller
 {
-    protected $model = \Azous\Model\Game::class;
+    protected $model = \Azuos\Model\Game::class;
 }

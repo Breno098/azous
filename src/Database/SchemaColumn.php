@@ -1,6 +1,6 @@
 <?php
 
-namespace Azous\Database;
+namespace Azuos\Database;
 
 class SchemaColumn
 {

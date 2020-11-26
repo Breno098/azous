@@ -1,14 +1,14 @@
 <?php
 
-namespace Azous\Schema;
+namespace Azuos\Schema;
 
-class Player extends \Azous\Database\SchemaBase
+class Player extends \Azuos\Database\SchemaBase
 {
    protected $table = 'player';
 
    public function create()
    {
-      $schema = new \Azous\Database\Schema();
+      $schema = new \Azuos\Database\Schema();
       $schema->table($this->table);
       $schema->id();
       $schema->string('name', 80);
@@ -19,7 +19,7 @@ class Player extends \Azous\Database\SchemaBase
 
    public function factory()
    {
-      (new \Azous\Database\Database)->table($this->table)->insert([
+      (new \Azuos\Database\Database)->table($this->table)->insert([
         'id' => 1, 
         'name' => 'Cristiano Ronaldo',
         'team_id' => 3,

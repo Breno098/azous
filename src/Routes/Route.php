@@ -1,11 +1,10 @@
 <?php
 
-namespace Azous\Routes;
+namespace Azuos\Routes;
 
 class Route
 {
     public static $routes = [];
-    private static $fixed = '/index.php';
 
     /**
      * @param string $route Rota de acesso
@@ -50,7 +49,7 @@ class Route
      */
     static private function addRoute(string $method, string $path, string $controller)
     {
-        $route = new BaseRoute($method, self::$fixed . $path, $controller);
+        $route = new BaseRoute($method, $path, $controller);
         self::$routes[] = $route;
         return $route;
     }
@@ -93,19 +92,13 @@ class Route
 
     static public function prefix(string $prefix, BaseRoute $route)
     {
-        $routeReplace = str_replace(self::$fixed, '', $route->route);
-        $newRoute = self::$fixed;
-        $newRoute .= $prefix;
-        $newRoute .= $routeReplace;
+        $newRoute = $prefix . $route->route;
         $route->setRoute( $newRoute );
     }
 
     static public function sufix(string $sufix, BaseRoute $route)
     {
-        $routeReplace = str_replace(self::$fixed, '', $route->route);
-        $newRoute = self::$fixed;
-        $newRoute .= $routeReplace;
-        $newRoute .= $sufix;
+        $newRoute = $route->route . $sufix;
         $route->setRoute( $newRoute );
     }
 

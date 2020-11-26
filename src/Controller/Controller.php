@@ -1,9 +1,9 @@
 <?php
 
-namespace Azous\Controller;
+namespace Azuos\Controller;
 
-use Azous\Http\Request;
-use Azous\Database\Database;
+use Azuos\Http\Request;
+use Azuos\Database\Database;
 
 class Controller
 {
@@ -23,7 +23,7 @@ class Controller
         }
     } 
 
-    public function getById(\Azous\Http\Request $request)
+    public function getById(\Azuos\Http\Request $request)
     {
         if(isset($this->model)){
             $this->model->setId($request->id)->run();
@@ -31,7 +31,16 @@ class Controller
         }
     }
 
-    public function registerForRequest(\Azous\Http\Request $request)
+    public function getByRange(\Azuos\Http\Request $request)
+    {
+        if(isset($this->model)){
+            return response()->json()->send(
+                $this->model->paginated((int) $request->offset, (int) $request->limit)
+            );
+        }
+    }
+
+    public function registerForRequest(\Azuos\Http\Request $request)
     {
         $this->model->saveRequestData($request); 
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Azous\Controller;
+namespace Azuos\Controller;
 
 class GoalController extends Controller
 {
-    protected $model = \Azous\Model\Goal::class;
+    protected $model = \Azuos\Model\Goal::class;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Azous\Model;
+namespace Azuos\Model;
 
 class Model
 {
@@ -47,7 +47,7 @@ class Model
 
     public function searchId(int $id)
     {
-        return (new \Azous\Database\Database)
+        return (new \Azuos\Database\Database)
             ->table( $this->table() )
             ->columns( $this->attrToArray() )
             ->where('id', '=', $id)
@@ -91,13 +91,13 @@ class Model
         }
 
         if( isset($this->id) && $this->searchId($this->id) ){
-            (new \Azous\Database\Database)->table($this->table())->where('id', '=', $this->id)->update($storeArray);
+            (new \Azuos\Database\Database)->table($this->table())->where('id', '=', $this->id)->update($storeArray);
         } else {
-            (new \Azous\Database\Database)->table($this->table())->insert($storeArray);
+            (new \Azuos\Database\Database)->table($this->table())->insert($storeArray);
         }
     }
 
-    public function saveRequestData(\Azous\Http\Request $request)
+    public function saveRequestData(\Azuos\Http\Request $request)
     {
         foreach (get_object_vars($this) as $nameParam => $valueParam) {
             foreach ($request as $indexRequest => $valueRequest) {
@@ -112,16 +112,27 @@ class Model
     public function delete()
     {
         if( isset($this->id) && $this->searchId($this->id) ){
-            (new \Azous\Database\Database)->table($this->table())->where('id', '=', $this->id)->delete();
+            (new \Azuos\Database\Database)->table($this->table())->where('id', '=', $this->id)->delete();
         } 
     } 
 
     public function findAll()
     {
-        $results = (new \Azous\Database\Database)->table( $this->table() )->get();
+        $results = (new \Azuos\Database\Database)->table( $this->table() )->columns( $this->attrToArray() )->get();
+        return $this->constructListModels($results);
+    }
+
+    public function paginated(int $offset = 0, int $limit = 10)
+    {
+        $results = (new \Azuos\Database\Database)->table( $this->table() )->columns( $this->attrToArray() )->paginated($offset, $limit)->get();
+        return $this->constructListModels($results);
+    }
+
+    private function constructListModels(array $resultModels = [])
+    {
         $class = get_class($this);
         $listModels = $this->table();
-        foreach ($results as $index => $item) {
+        foreach ($resultModels as $index => $item) {
             $this->$listModels[] = new $class( $item['id'] );
         }
         return $this->$listModels;

@@ -1,14 +1,14 @@
 <?php
 
-namespace Azous\Schema;
+namespace Azuos\Schema;
 
-class Goal extends \Azous\Database\SchemaBase
+class Goal extends \Azuos\Database\SchemaBase
 {
    protected $table = 'goal';
 
    public function create()
    {
-      $schema = new \Azous\Database\Schema();
+      $schema = new \Azuos\Database\Schema();
       $schema->table($this->table);
       $schema->id();
       $schema->enum('type', ['aposta', 'oficial']);
@@ -21,7 +21,7 @@ class Goal extends \Azous\Database\SchemaBase
 
    public function factory()
    {
-      (new \Azous\Database\Database)->table($this->table)->insert([
+      (new \Azuos\Database\Database)->table($this->table)->insert([
 
       ]);
    }

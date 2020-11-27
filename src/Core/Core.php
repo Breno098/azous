@@ -4,7 +4,10 @@ namespace Azuos\Core;
 
 class Core
 {
-    public function require(string $archive)
+    /**
+     * @param string $archive
+     */
+    public function require(string $archive) : void
     {
         require_once dirname( dirname (__DIR__) ) . str_replace('\\', DIRECTORY_SEPARATOR, $archive);
     }
@@ -19,5 +22,10 @@ class Core
     {
         $this->require('\routes.php');
         return $this;
+    }
+
+    public function run() : void
+    {
+        $this->requireHelpers()->requireRoutes();
     }
 }

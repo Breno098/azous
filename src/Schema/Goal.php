@@ -2,21 +2,20 @@
 
 namespace Azuos\Schema;
 
-class Goal extends \Azuos\Database\SchemaBase
+class Goal extends \Azuos\Database\Schema
 {
    protected $table = 'goal';
 
    public function create()
    {
-      $schema = new \Azuos\Database\Schema();
-      $schema->table($this->table);
-      $schema->id();
-      $schema->enum('type', ['aposta', 'oficial']);
-      $schema->int('team_id')->foreignKey('team')->onDeleteSetNull();
-      $schema->int('game_id')->foreignKey('game')->onDeleteSetNull();
-      $schema->int('player_id')->foreignKey('player')->onDeleteSetNull();
-      $schema->int('gambler_id')->foreignKey('gambler')->onDeleteSetNull();
-      $schema->create();
+      $this->table($this->table);
+      $this->id();
+      $this->enum('type', ['aposta', 'oficial']);
+      $this->int('team_id')->foreignKey('team')->onDeleteSetNull();
+      $this->int('game_id')->foreignKey('game')->onDeleteSetNull();
+      $this->int('player_id')->foreignKey('player')->onDeleteSetNull();
+      $this->int('gambler_id')->foreignKey('gambler')->onDeleteSetNull();
+      $this->runCreate();
    }
 
    public function factory()

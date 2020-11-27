@@ -2,19 +2,18 @@
 
 namespace Azuos\Schema;
 
-class Player extends \Azuos\Database\SchemaBase
+class Player extends \Azuos\Database\Schema
 {
    protected $table = 'player';
 
    public function create()
    {
-      $schema = new \Azuos\Database\Schema();
-      $schema->table($this->table);
-      $schema->id();
-      $schema->string('name', 80);
-      $schema->int('team_id')->foreignKey('team')->onDeleteSetNull();
-      $schema->int('country_id')->foreignKey('country')->onDeleteSetNull();
-      $schema->create();
+      $this->table($this->table);
+      $this->id();
+      $this->string('name', 80);
+      $this->int('team_id')->foreignKey('team')->onDeleteSetNull();
+      $this->int('country_id')->foreignKey('country')->onDeleteSetNull();
+      $this->runCreate();
    }
 
    public function factory()

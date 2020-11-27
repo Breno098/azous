@@ -3,7 +3,7 @@
 use Azuos\Routes\Route;
 
 Route::get('/gamblerUser/getAll/{auth}', 'GamblerUserController@getAll')->auth();
-Route::get('/comands/{command}', 'CommandController@index');
+Route::get('/commands/{command}/{auth}', 'CommandController@index')->auth('masterKeyComand');
 
 Route::group(['prefix' => '/goal'], [
     Route::get('/getAll', 'GoalController@getAll'),

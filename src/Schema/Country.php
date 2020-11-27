@@ -2,17 +2,16 @@
 
 namespace Azuos\Schema;
 
-class Country extends \Azuos\Database\SchemaBase
+class Country extends \Azuos\Database\Schema
 {
    protected $table = 'country';
 
    public function create()
    {
-      $schema = new \Azuos\Database\Schema();
-      $schema->table($this->table);
-      $schema->id();
-      $schema->string('name', 50);
-      $schema->create();
+      $this->table($this->table);
+      $this->id();
+      $this->string('name', 50);
+      $this->runCreate();
    }
 
    public function factory()
@@ -66,7 +65,7 @@ class Country extends \Azuos\Database\SchemaBase
          ['id' => 46,'name' => 'Suécia'],
          ['id' => 47,'name' => 'Suíça'],
          ['id' => 48,'name' => 'Turquia'],
-         ['id' => 49,'name' => 'Inglaterra'],
+         ['id' => 49,'name' => 'Inglaterra']
       );
    }
 

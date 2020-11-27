@@ -5,7 +5,7 @@ namespace Azuos\Controller;
 use Azuos\Http\Request;
 use Azuos\Database\Schema;
 use Azuos\Database\Database;
-use Azuos\Tools\TArray;
+use Azuos\Tools\AzStr;
 
 class CommandController extends Controller
 {
@@ -16,7 +16,6 @@ class CommandController extends Controller
     ];
 
     private $schemas = [
-        // 'user' => \Azuos\Schema\User::class,
         \Azuos\Schema\Country::class,
         \Azuos\Schema\Team::class,
         \Azuos\Schema\Gambler::class,
@@ -27,6 +26,7 @@ class CommandController extends Controller
     
     public function index(Request $req)
     {
+        // echo (\DateTime::createFromFormat('U.u', microtime(true)))->format("U_u");
         if(isset($this->commands[ $req->command ])){
             $functionCommand = $this->commands[ $req->command ];
             return $this->$functionCommand();

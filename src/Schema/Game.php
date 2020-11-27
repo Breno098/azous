@@ -2,24 +2,23 @@
 
 namespace Azuos\Schema;
 
-class Game extends \Azuos\Database\SchemaBase
+class Game extends \Azuos\Database\Schema
 {
    protected $table = 'game';
 
    public function create()
    {
-      $schema = new \Azuos\Database\Schema();
-      $schema->table($this->table);
-      $schema->id();
-      $schema->string('place');
-      $schema->enum('type', ['aposta', 'oficial']);
-      $schema->int('home_team_score');
-      $schema->int('guest_team_score');
-      $schema->int('home_team_id')->foreignKey('team')->onDeleteSetNull();
-      $schema->int('guest_team_id')->foreignKey('team')->onDeleteSetNull();
-      $schema->int('gambler_id')->foreignKey('gambler')->onDeleteSetNull();
-      $schema->string('goals_players_ids');
-      $schema->create();
+      $this->table($this->table);
+      $this->id();
+      $this->string('place');
+      $this->enum('type', ['aposta', 'oficial']);
+      $this->int('home_team_score');
+      $this->int('guest_team_score');
+      $this->int('home_team_id')->foreignKey('team')->onDeleteSetNull();
+      $this->int('guest_team_id')->foreignKey('team')->onDeleteSetNull();
+      $this->int('gambler_id')->foreignKey('gambler')->onDeleteSetNull();
+      $this->string('goals_players_ids');
+      $this->runCreate();
    }
 
    public function factory()

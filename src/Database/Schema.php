@@ -5,7 +5,6 @@ namespace Azuos\Database;
 class Schema
 {
     private $db;
-    private $table;
     private $columns = [];
 
     public function __construct()
@@ -105,20 +104,25 @@ class Schema
         return $this->addColumn($name, 'datetime');
     }
 
-    public function create()
+    public function runCreate()
     {
         $columns = implode(',', $this->columns);
         $this->db->statements(" create table if not exists {$this->table} ({$columns}) ");
     }
 
-    public function drop()
+    public function runDrop()
     {
         $this->db->statements(" drop table if exists {$this->table} ");
     }
 
     public function createOrReplace()
     {
-        $this->drop();
-        $this->create();
+        $this->runDrop();
+        $this->runCreate();
+    }
+
+    public function drop()
+    {
+        $this->runDrop();
     }
 }

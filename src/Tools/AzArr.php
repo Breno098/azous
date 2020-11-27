@@ -2,7 +2,7 @@
 
 namespace Azuos\Tools;
 
-class TArray
+class AzArr
 {
     static function explode(string $delimiter, string $string, array $keys = [], bool $length = false)
     {

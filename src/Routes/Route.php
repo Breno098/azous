@@ -7,8 +7,10 @@ class Route
     public static $routes = [];
 
     /**
-     * @param string $route Rota de acesso
-     * @param string $controller Controller e função: $controller = '{Controller}@{function}'
+     * @param string $route
+     * @param string $controller '{Controller}@{function}'
+     * 
+     * @return BaseRoute
      */
     static public function get(string $route, string $controller)
     {
@@ -16,8 +18,10 @@ class Route
     }
 
     /**
-     * @param string $route Rota de acesso
-     * @param string $controller Controller e função: $controller = '{Controller}@{function}'
+     * @param string $route
+     * @param string $controller '{Controller}@{function}'
+     * 
+     * @return BaseRoute
      */
     static public function post(string $route, string $controller)
     {
@@ -25,8 +29,10 @@ class Route
     }
 
     /**
-     * @param string $route Rota de acesso
-     * @param string $controller Controller e função: $controller = '{Controller}@{function}'
+     * @param string $route
+     * @param string $controller '{Controller}@{function}'
+     * 
+     * @return BaseRoute
      */
     static public function delete(string $route, string $controller)
     {
@@ -34,8 +40,10 @@ class Route
     }
 
     /**
-     * @param string $route Rota de acesso
-     * @param string $controller Controller e função: $controller = '{Controller}@{function}'
+     * @param string $route
+     * @param string $controller '{Controller}@{function}'
+     * 
+     * @return BaseRoute
      */
     static public function put(string $route, string $controller)
     {
@@ -43,9 +51,11 @@ class Route
     }
 
     /**
-     * @param string $method 
+     * @param string $method {get, post, puth, delete}
      * @param string $path 
      * @param string $controller 
+     * 
+     * @return BaseRoute
      */
     static private function addRoute(string $method, string $path, string $controller)
     {
@@ -61,6 +71,10 @@ class Route
         }
     }
 
+    /**
+     * @param array $params
+     * @param array $routes
+    */
     static public function group(array $params, array $routes = [])
     {
         if( isset($params['auth']) ){
@@ -76,6 +90,10 @@ class Route
         }
     }
 
+    /**
+     * @param string $prefix
+     * @param array $routes
+     */
     static public function prefixGroup(string $prefix, array $routes = [])
     {
         foreach ($routes as $route) {
@@ -83,6 +101,10 @@ class Route
         }
     }
 
+    /**
+     * @param string $sufix
+     * @param array $routes
+     */
     static public function sufixGroup(string $sufix, array $routes = [])
     {
         foreach ($routes as $route) {
@@ -90,18 +112,30 @@ class Route
         }
     }
 
+    /**
+     * @param string $prefix
+     * @param BaseRoute $route
+     */
     static public function prefix(string $prefix, BaseRoute $route)
     {
         $newRoute = $prefix . $route->route;
         $route->setRoute( $newRoute );
     }
 
+    /**
+     * @param string $sufix
+     * @param BaseRoute $route
+     */
     static public function sufix(string $sufix, BaseRoute $route)
     {
         $newRoute = $route->route . $sufix;
         $route->setRoute( $newRoute );
     }
 
+    /**
+     * @param mixed $auth
+     * @param array $routes
+     */
     static public function authGroup($auth = null, array $routes = [])
     {
         foreach ($routes as $route) {

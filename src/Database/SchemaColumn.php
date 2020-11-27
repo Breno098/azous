@@ -117,7 +117,8 @@ class SchemaColumn
             $stringColumn .= " primary key ";
         }
         if($this->foreignKey){
-            $nameFk = "fk_{$this->name}_{$this->foreignKey['table']}_{$this->foreignKey['column']}";
+            $microtime = \Azuos\Tools\AzStr::remove('.', date('U') . microtime(true));
+            $nameFk = "fk_{$this->name}_{$this->foreignKey['table']}_{$this->foreignKey['column']}_{$microtime}";
             $stringColumn .= " , constraint foreign key {$nameFk} ({$this->name}) references {$this->foreignKey['table']} ({$this->foreignKey['column']}) ";
             if($this->foreignKey['options']){
                 $stringColumn .= $this->foreignKey['options'];

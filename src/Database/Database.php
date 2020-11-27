@@ -32,18 +32,28 @@ class Database
 
     }
 
-    public function query(string $query, array $prepareValues = [])
+    /**
+     * @param string $query
+     * @param array $prepareValues
+     * 
+     * @return array
+     */
+    public function query(string $query, array $prepareValues = []) : array
     {
         $this->query = $query;
         $this->prepareValues = $prepareValues;
         return $this->run();
     }
 
-    public function statements(string $statements, array $prepareValues = [])
+    /**
+     * @param string $statements
+     * @param array $prepareValues
+     */
+    public function statements(string $statements, array $prepareValues = []) : void
     {
         $this->query = $statements;
         $this->prepareValues = $prepareValues;
-        return $this->execute();
+        $this->execute();
     }
 
     public function table(string $table)
@@ -161,7 +171,10 @@ class Database
         return $this->execute();
     }
 
-    private function run()
+    /**
+     * @return array
+     */
+    private function run() : array
     {
         $stmt = $this->connect()->prepare( $this->query );
         $stmt->execute( $this->prepareValues );
@@ -169,7 +182,7 @@ class Database
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    private function execute()
+    private function execute() : void
     {
         $stmt = $this->connect()->prepare( $this->query );
         $stmt->execute( $this->prepareValues );

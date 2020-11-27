@@ -11,7 +11,7 @@ class Request
     public $params = [];
     
     /**
-     * @param array $params Parametos para criação do objeto de requisição
+     * @param array $params
      */
     public function __construct(array $params)
     {
@@ -23,7 +23,7 @@ class Request
     }
 
     /**
-     * @param array $params Criação dos parametros
+     * @param array $params 
      */
     private function createRequest(array $params)
     {
@@ -31,9 +31,6 @@ class Request
             $this->addParam($key, $value);
             if( $value = \json_decode($value)){
                 $this->addParam($key, $value);
-                // foreach ( $value as $keyJson => $valueJson){
-                //     $this->addParam($keyJson, $valueJson);
-                // }
             } 
         }
     }

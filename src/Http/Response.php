@@ -19,7 +19,7 @@ class Response
     }
 
     /**
-     * @param int $code Código da resposta
+     * @param int $code 
      */
     public function code(int $code)
     {
@@ -28,11 +28,11 @@ class Response
     }
 
     /**
-     * @param mixed $response Dados a serem enviados
+     * @param mixed $response 
      */
     public function send($response)
     {
-        echo $this->format === 'json' ? json_encode($response) : var_dump($response);
+        echo $this->format === 'json' ? json_encode($response, JSON_UNESCAPED_UNICODE) : var_dump($response);
     }
 
 }

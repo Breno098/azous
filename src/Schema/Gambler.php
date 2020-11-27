@@ -2,20 +2,19 @@
 
 namespace Azuos\Schema;
 
-class Gambler extends \Azuos\Database\SchemaBase
+class Gambler extends \Azuos\Database\Schema
 {
    protected $table = 'gambler';
 
    public function create()
    {
-      $schema = new \Azuos\Database\Schema();
-      $schema->table($this->table);
-      $schema->id();
-      $schema->string('name', 50);
-      $schema->string('user', 20);
-      $schema->string('token');
-      $schema->timestamp('access_time')->defaultCurrent();
-      $schema->create();
+      $this->table($this->table);
+      $this->id();
+      $this->string('name', 50);
+      $this->string('user', 20);
+      $this->string('token');
+      $this->timestamp('access_time')->defaultCurrent();
+      $this->runCreate();
    }
 
    public function factory()

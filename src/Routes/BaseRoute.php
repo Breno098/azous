@@ -2,7 +2,7 @@
 
 namespace Azuos\Routes;
 
-use Azuos\Tools\TArray;
+use Azuos\Tools\AzArr;
 use Azuos\Http\Request;
 
 class BaseRoute 
@@ -46,17 +46,10 @@ class BaseRoute
         $this->parsedPath = [];
         $str_explode = explode('/', $this->fixed.$path);
         foreach ($str_explode as $key => $value) {
-            preg_match('/{(.*?)}/', $value, $matches);
-            if($matches){
-                $this->parsedPath[] = array(
-                    'nameParam' => $matches[1],
-                    'value' => '(param)'
-                );
+            if( preg_match('/{(.*?)}/', $value, $matches) ){
+                $this->parsedPath[] = ['nameParam' => $matches[1], 'value' => '(param)'];
             } else {
-                $this->parsedPath[] = array(
-                    'nameParam' => false,
-                    'value' => $value
-                );
+                $this->parsedPath[] = ['nameParam' => false, 'value' => $value];
             }
         }
     }
@@ -66,7 +59,7 @@ class BaseRoute
      */
     private function setCallback(string $callBack)
     {
-        $this->callBack = TArray::explode('@', $callBack, [ 'class', 'function' ]);
+        $this->callBack = AzArr::explode('@', $callBack, [ 'class', 'function' ]);
     }
 
     /**
@@ -137,8 +130,7 @@ class BaseRoute
      */
     private function mounted($request)
     {
-        $use = "\\Azuos\\Controller\\";
-        $class = $use . $this->callBack['class'];
+        $class =  env('NAMESPACE_CONTROLLERS', '\\Azuos\\Controller\\') . $this->callBack['class'];
         $function = $this->callBack['function'];
         return (new $class)->$function($request);
     }
